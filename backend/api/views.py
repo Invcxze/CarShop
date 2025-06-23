@@ -4,7 +4,7 @@ from .serializers import CarSerializer, CategorySerializer, ServiceSerializer, A
 
 
 class ReadOnlyCarViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Car.objects.all()
+    queryset = Car.objects.select_related("category").all()
     serializer_class = CarSerializer
 
 
@@ -19,5 +19,5 @@ class ReadOnlyServiceViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class ApplicationCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
-    queryset = Application.objects.all()
+    queryset = Application.objects.select_related("car", "service").all()
     serializer_class = ApplicationSerializer
