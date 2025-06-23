@@ -9,7 +9,7 @@ services:
     build:
       context: ./backend
       dockerfile: ../Dockerfile.backend
-    container_name: shop-backend
+    container_name: car-shop-backend
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend:/app
@@ -24,7 +24,7 @@ services:
     build:
       context: ./frontend
       dockerfile: ../Dockerfile.frontend
-    container_name: shop-frontend
+    container_name: car-shop-frontend
     command: sh -c "npm install --include=optional && npm run dev"
     volumes:
       - ./frontend:/frontend
