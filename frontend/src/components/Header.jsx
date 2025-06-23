@@ -34,7 +34,11 @@ export default function Header() {
                   Услуги
                 </NavLink>
               </li>
-
+              <li>
+                <NavLink to="/cars" className={({ isActive }) => isActive ? "active" : ""}>
+                  Машины
+                </NavLink>
+              </li>
               <li>
                 <NavLink to="/contacts" className={({ isActive }) => isActive ? "active" : ""}>
                   Контакты
