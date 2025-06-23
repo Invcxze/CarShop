@@ -8,7 +8,7 @@ export default defineConfig({
     host: '0.0.0.0',
     proxy: {
       '/api': {
-        target: 'http://car-shop-backend:8000',
+        target: 'http://car-shop-backend:8090',
         changeOrigin: true,
         secure: false,
       }
