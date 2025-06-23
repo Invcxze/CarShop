@@ -1,11 +1,18 @@
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, filters
 from .models import Car, Category, Service, Application
 from .serializers import CarSerializer, CategorySerializer, ServiceSerializer, ApplicationSerializer
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ReadOnlyCarViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Car.objects.select_related("category").all()
     serializer_class = CarSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = {
+        'category': ['exact'],
+        'price': ['gte', 'lte'],
+    }
+    ordering_fields = ['title']
 
 
 class ReadOnlyCategoryViewSet(viewsets.ReadOnlyModelViewSet):

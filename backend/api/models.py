@@ -19,6 +19,7 @@ class Car(models.Model):
     horsepower = models.IntegerField(null=True, blank=True, verbose_name="Кол-во лошадиных сил")
     max_speed = models.IntegerField(null=True, blank=True, verbose_name="Максимальная скорость")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="cars", verbose_name="Категория")
+    price = models.PositiveIntegerField(verbose_name="Цена машины", default=0)
 
     def __str__(self):
         return self.title
