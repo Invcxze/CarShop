@@ -1,4 +1,6 @@
 from rest_framework import viewsets, mixins, filters
+from rest_framework.permissions import AllowAny
+
 from .models import Car, Category, Service, Application
 from .serializers import CarSerializer, CategorySerializer, ServiceSerializer, ApplicationSerializer
 from django_filters.rest_framework import DjangoFilterBackend
@@ -28,3 +30,4 @@ class ReadOnlyServiceViewSet(viewsets.ReadOnlyModelViewSet):
 class ApplicationCreateViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     queryset = Application.objects.select_related("car", "service").all()
     serializer_class = ApplicationSerializer
+    permission_classes = [AllowAny]
